@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block page_content %}
+<br>
+<figure class="text-center">
+    <h1>{{ patient.name }}</h1>
+    <br>
+</figure>
+    <h3><strong>{{research_study.name}}:</strong> Research Questions</h3>
+    <h5>Date of Encounter: {{ encounter.date }}</h5>
+    <br>
+    <form action="/ptchart/{{ patient.id }}/{{ encounter.id }}/{{ research_study.id }}/" method="POST">
+        {% csrf_token %}
+        {% for research_question in research_questions %}
+            <h5>{{research_question.text}}</h5>
+            <div class="form-group">
+                {{ form.response }}
+            </div>
+            {% endfor %}
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <br>
+    <a href="{% url 'ptchart_index' %}"
+                   class="btn btn-outline-primary">
+                    Return to Patient List
+                </a>
+</div>
+{% endblock %}

@@ -1,0 +1,83 @@
+<!-- ptchart_index -->
+{% extends "base.html" %}
+{% block page_content %}
+<h1>Patient Charts</h1>
+<a href="{% url 'ptchart_newpatient' %}"
+                   class="btn btn-primary">
+                    New Patient
+                </a>
+<div class="row">
+    <form action="/ptchart/" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.name }}
+        </div>
+        <button type="submit" class="btn btn-primary" name="findpatient">Find Patient</button>
+    </form>
+    <form action="/ptchart/" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary" name="viewall">View All Patients</button>
+    </form>
+{% for patient in patients %}
+    <div class="col-md-4">
+        <div class="card mb-2">
+            <div class="card-body">
+                <h5 class="card-title">{{ patient.name }}</h5>
+                <p class="card-text">{{ patient.dob }}</p>
+                <a href="{% url 'ptchart_detail' patient.id %}"
+                   class="btn btn-primary">
+                    Open Chart
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+<!-- ptchart_detail -->
+<div class="row">
+    {% for encounter in encounters %}
+        <div class="col-md-4">
+            <div class="card mb-2">
+                <div class="card-body">
+                    <h5 class="card-title">{{ encounter.date }}</h5>
+                    <a href="{% url 'ptchart_encounter' patient.id encounter.id %}"
+                   class="btn btn-primary">
+                    Open Encounter
+                </a>
+                </div>
+            </div>
+        </div>
+<!-- ptchart_encounter -->
+        {% for q,a in qa_pairs %}
+    <h5 class="card-title">{{ q.text }}</h5>
+    <h5 class="card-title">{{ a.response }}</h5>
+{% endfor %}
+<!-- research_index -->
+<div class="row">
+    {% for research_study in research_studies %}
+        <div class="col-md-4">
+            <div class="card mb-2">
+                <div class="card-body">
+                    <h5 class="card-title">{{ research_study.name }}</h5>
+                    <a href="{% url 'research_detail' research_study.id %}"
+                       class="btn btn-primary">
+                       Open
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+<!-- research_detail -->
+    <div class="row">
+        {% for research_question in research_questions %}
+            <div class="col-md-4">
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ research_question.text }}</h5>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>

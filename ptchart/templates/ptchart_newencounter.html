@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block page_content %}
+<figure class="text-center">
+    <br>
+    <h1>{{ patient.name }}</h1>
+</figure>
+<div class="col-md-8 offset-md-2">
+    <h4>New Encounter Form:</h4>
+    <form action="/ptchart/{{patient.id}}/newencounter/" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.date }}
+        </div>
+        <div class="form-group">
+            {{ form.body }}
+            <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+<br>
+<a href="{% url 'ptchart_detail' patient.id %}"
+    class="btn btn-outline-primary">
+     Return to Patient Overview
+ </a>
+{% endblock %}

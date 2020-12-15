@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block page_content %}
+<br>
+<figure class="text-center">
+    <h2>{{ patient.name }} Already Exists in Database!</h2>
+    <br>
+    <a href="{% url 'ptchart_detail' patient.id %}"
+                   class="btn btn-primary">
+                    Go to {{ patient.name }}'s Chart
+                </a>
+            </figure>
+<br>
+<figure class="text-center">
+    <a href="{% url 'ptchart_index' %}"
+                   class="btn btn-outline-primary">
+                    Return to Patient List
+                </a>
+            </figure>
+{% endblock %}

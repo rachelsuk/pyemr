@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block page_content %}
+<figure class="text-center">
+    <h1>{{ patient.name }}</h1>
+    <br>
+    <h5>Research Enrollment Form:</h5>
+    <form action="/ptchart/{{patient.id}}/researchenrollment/" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.research_study }}
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+</figure>
+<figure class="text-center">
+<a href="{% url 'ptchart_detail' patient.id %}"
+    class="btn btn-outline-primary">
+     Return to Patient Overview
+ </a>
+</figure>
+
+
+
+{% endblock %}

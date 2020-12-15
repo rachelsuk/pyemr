@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block page_content %}
+<div class="col-md-8 offset-md-2">
+    <br>
+    <h3>New Patient Form:</h3>
+    <form action="/ptchart/newpatient/" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.intake_date }}
+        </div>
+        <div class="form-group">
+            {{ form.name }}
+        </div>
+        <div class="form-group">
+            {{ form.dob }}
+        </div>
+        <div class="form-race">
+            {{ form.race }}
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <br>
+    <a href="{% url 'ptchart_index' %}"
+                   class="btn btn-outline-primary">
+                    Return to All Patient Charts
+                </a>
+</div>
+{% endblock %}
