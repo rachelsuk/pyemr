@@ -40,9 +40,10 @@ def ptchart_detail(request, patient_id):
 def ptchart_encounter(request, patient_id, encounter_id):
     patient = Patient.objects.get(id=patient_id)
     encounter = Encounter.objects.get(id=encounter_id)
-    research_study = ResearchStudy.objects.get(patient__id=patient_id)
-    research_questions = ResearchQuestion.objects.filter(research_study__id=research_study.id)
-    research_questionresponses = ResearchQuestionResponse.objects.filter(patient__id=patient_id, encounter__id=encounter_id, research_study__id=research_study.id)
+    if ResearchStudy.objects.filter(patient__id=patient__id).exists():
+        research_study = ResearchStudy.objects.get(patient__id=patient_id)
+        research_questions = ResearchQuestion.objects.filter(research_study__id=research_study.id)
+        research_questionresponses = ResearchQuestionResponse.objects.filter(patient__id=patient_id, encounter__id=encounter_id, research_study__id=research_study.id)
     qa_pairs = zip(research_questions,research_questionresponses)
 
     context = {
