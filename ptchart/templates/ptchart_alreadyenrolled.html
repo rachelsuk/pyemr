@@ -8,9 +8,9 @@
 <figure class="text-center">
     <h3>Patients cannot be enrolled in more than one research study. {{ patient.name }} is already enrolled in {{ research_study.name }}.</h3>
     <br>
-<a href="{% url 'ptchart_detail' patient.id %}"
-    class="btn btn-outline-primary">
-     Return to Patient Overview
- </a>
- </figure>
+    <a href="{% url 'ptchart_detail' patient.id %}"
+        class="btn btn-outline-primary">
+        Return to Patient Overview
+    </a>
+</figure>
 {% endblock %}

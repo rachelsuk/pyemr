@@ -2,15 +2,15 @@
 {% block page_content %}
 <br>
 <figure class="text-center">
-<h1>{{ research_study.name }}</h1>
-<br>
-<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-    <a href="{% url 'research_index' %}"
-        class="btn btn-outline-primary">
-         Return to Research Studies
-     </a>   
-     </div>
-    </figure>
+    <h1>{{ research_study.name }}</h1>
+    <br>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <a href="{% url 'research_index' %}"
+            class="btn btn-outline-primary">
+            Return to Research Studies
+        </a>   
+    </div>
+</figure>
 <table class="table">
     <thead>
         <tr>
@@ -21,18 +21,18 @@
     <tbody>
         {% for research_question in research_questions %}
         <tr>
-        <td>{{ research_question.text }}</td>
-        <td>{{ research_question.variable }}</td>
+            <td>{{ research_question.text }}</td>
+            <td>{{ research_question.variable }}</td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
-    <br>
-    <figure class="text-center">
-        <a href="{% url 'research_newquestion' research_study.id %}"
-            class="btn btn-primary">
-             Add Research Data
-         </a>
-        </figure>  
+<br>
+<figure class="text-center">
+    <a href="{% url 'research_newquestion' research_study.id %}"
+        class="btn btn-primary">
+            Add Research Data
+    </a>
+</figure>  
 
 {% endblock %}

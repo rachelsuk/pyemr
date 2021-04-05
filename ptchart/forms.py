@@ -32,14 +32,7 @@ class NewEncounterForm(forms.Form):
             "class": "form-control",
             "placeholder": "Encounter Notes"
         }))    
-    
-
-class SearchPatientForm(forms.Form):
-    name =  forms.CharField(widget=forms.TextInput(attrs={
-            "class": "form-control",
-            "placeholder": "Patient Name (e.g. 'Donald Duck')"
-        }))
-
+        
 
 class ResearchQuestionResponseForm(forms.Form):
     response =  forms.CharField(widget=forms.TextInput(attrs={

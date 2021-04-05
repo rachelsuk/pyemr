@@ -2,44 +2,47 @@
 {% block page_content %}
 <br>
 <h1>Patient Charts </h1>
+
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
     <a href="{% url 'ptchart_newpatient' %}"
             class="btn btn-primary me-md-2">
             New Patient
-        </a>
+    </a>
+</div>
+<br>
+
+<form action="/ptchart/">
+    <div class="form-group">
+        <input type="text" name="name" class="form-control" placeholder="Patient Name (e.g. 'Donald Duck')" \
+        required="" id="id_name">
     </div>
-    <br>
-    <form action="/ptchart/" method="POST">
-        {% csrf_token %}
-        <div class="form-group">
-            {{ form.name }}
-        </div>
-        <button type="submit" class="btn btn-primary" name="findpatient">Search Patient</button>   
+    <button type="submit" class="btn btn-primary">Search Patient</button>   
+</form>
+
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <form action="/ptchart/">
+        <button type="submit" class="btn btn-outline-primary">View All Patients</button>
     </form>
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <form action="/ptchart/" method="POST">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-outline-primary" name="viewall">View All Patients</button>
-        </form>
-    </div>
-    <table class="table">
-        <thead>
-            <tr>
-              <th scope="col">Patient Name</th>
-              <th scope="col">Date of Birth</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for patient in patients %}
-            <tr>
-              <td> <a href="{% url 'ptchart_detail' patient.id %}"
-                class="btn btn-link">
-                {{ patient.name }}
-             </a></td>
-              <td>{{ patient.dob }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>  
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Patient Name</th>
+            <th scope="col">Date of Birth</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for patient in patients %}
+        <tr>
+            <td><a href="{% url 'ptchart_detail' patient.id %}"
+            class="btn btn-link">
+            {{ patient.name }}
+            </a></td>
+            <td>{{ patient.dob }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>  
     
 {% endblock %}

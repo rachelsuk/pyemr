@@ -6,45 +6,47 @@
     <h1>{{ patient.name }}</h1>
 </figure>
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-<a href="{% url 'ptchart_index' %}" class="btn btn-outline-primary"> 
-    Return to All Patient Charts
-</a>
+    <a href="{% url 'ptchart_index' %}" class="btn btn-outline-primary"> 
+        Return to All Patient Charts
+    </a>
 </div>
-<h5><strong>Basic Information:</strong></h5>
+<div>
+    <h5><strong>Basic Information:</strong></h5>
     <h6>Birthdate: {{ patient.dob }}</h6>
     <h6>Race: {{ patient.race }}</h6>
     <h6>Date of Intake: {{ patient.intake_date }}</h6>
     <h6>Research Studies Enrolled In: {{ research_study.name }}</h6>
     <a href="{% url 'ptchart_researchenrollment' patient.id %}"
         class="btn btn-secondary btn-sm">
-         Enroll Patient in Research Study
-     </a>
-
+            Enroll Patient in Research Study
+    </a>
+</div>
 <br>
-<br>
-<h5><strong>Encounters:</strong></h5>
-<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-    <a href="{% url 'ptchart_newencounter' patient.id %}"
-    class="btn btn-primary me-md-2">
-     Add Encounter
- </a>  </div>
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">Date of Encounter</th>
-        </tr>
+<div>
+    <h5><strong>Encounters:</strong></h5>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <a href="{% url 'ptchart_newencounter' patient.id %}"
+        class="btn btn-primary me-md-2">
+        Add Encounter
+        </a> 
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Date of Encounter</th>
+            </tr>
         </thead>
         <tbody>
-        {% for encounter in encounters %}
-        <tr>
-            <td> <a href="{% url 'ptchart_encounter' patient.id encounter.id %}"
-            class="btn btn-link">
-            {{ encounter.date }}
-            </a></td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-    </div>
+            {% for encounter in encounters %}
+            <tr>
+                <td> <a href="{% url 'ptchart_encounter' patient.id encounter.id %}"
+                class="btn btn-link">
+                {{ encounter.date }}
+                </a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 
 {% endblock %}

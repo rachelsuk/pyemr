@@ -24,10 +24,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
-    'blooming-dusk-84917.herokuapp.com'
+    'blooming-dusk-84917.herokuapp.com',
+    '127.0.0.1'
 ]
 
 

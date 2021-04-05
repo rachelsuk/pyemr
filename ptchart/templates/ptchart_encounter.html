@@ -5,42 +5,51 @@
     <br>
     <h1>{{ patient.name }}</h1>
 </figure>
+
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
     <a href="{% url 'ptchart_detail' patient.id %}"
     class="btn btn-outline-primary">
      Return to Patient Overview
- </a>
+    </a>
 </div>
-<h5><strong>Basic Information:</strong></h5>
+
+<div>
+    <h5><strong>Basic Information:</strong></h5>
     <h6>Birthdate: {{ patient.dob }}</h6>
     <h6>Race: {{ patient.race }}</h6>
     <h6>Research Studies Enrolled In: {{ research_study.name }}</h6>
+</div>
+
 <br>
 <br> 
-<h5><strong>Encounter Details:</strong></h5>
-<h6>Date of Encounter: {{ encounter.date }}</h6>
-<h6>Note:</h6>
-<div class="card">
-    <div class="card-body">
-        {{ encounter.body }}
-    </div>
-  </div>
-  <br>
-  <br>
-<h5><strong>Research Questions:</strong></h5>
-<h6>Research Study: {{ research_study.name }}</h6>
-<h6>Research Questions:</h6>
-<div class="card">
-    <div class="card-body">
-{% for q,a in qa_pairs %}
-    <h6><strong>{{ q.text }}:</strong> {{ a.response }}</h6>
-{% endfor %}
-</div>
-</div>
-                </div>
-            </div>
+
+<div>
+    <h5><strong>Encounter Details:</strong></h5>
+    <h6>Date of Encounter: {{ encounter.date }}</h6>
+    <h6>Note:</h6>
+    <div class="card">
+        <div class="card-body">
+            {{ encounter.body }}
         </div>
     </div>
-    <br>
+</div>
+
+  <br>
+  <br>
+
+<div>
+    <h5><strong>Research Questions:</strong></h5>
+    <h6>Research Study: {{ research_study.name }}</h6>
+    <h6>Research Questions:</h6>
+    <div class="card">
+        <div class="card-body">
+        {% for q,a in qa_pairs %}
+            <h6>
+                <strong>{{ q.text }}:</strong> {{ a.response }}
+            </h6>
+        {% endfor %}
+        </div>
+    </div>
+</div>
 
 {% endblock %}

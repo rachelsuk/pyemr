@@ -2,19 +2,20 @@
 {% block page_content %}
 <br>
 <h1>Research Studies</h1>
-                <br>
-                <a href="{% url 'research_newstudy' %}"
-                   class="btn btn-primary">
-                    Register New Study
-                </a>
-                <br>
-                <br>
-                <ul class="list-group">
-{% for research_study in research_studies %}
-<li class="list-group-item"><a href="{% url 'research_detail' research_study.id %}"
-    class="btn btn-primary-link">
-    {{ research_study.name }}
- </a></li>
+<br>
+<a href="{% url 'research_newstudy' %}"
+    class="btn btn-primary">
+    Register New Study
+</a>
+<br>
+<br>
+<div>
+    <ul class="list-group">
+    {% for research_study in research_studies %}
+        <li class="list-group-item"><a href="{% url 'research_detail' research_study.id %}"
+            class="btn btn-primary-link">
+            {{ research_study.name }}
+        </a></li>
     {% endfor %}
 </div>
 {% endblock %}
