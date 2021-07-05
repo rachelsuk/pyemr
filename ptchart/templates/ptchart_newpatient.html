@@ -3,7 +3,7 @@
 <div class="col-md-8 offset-md-2">
     <br>
     <h3>New Patient Form:</h3>
-    <form action="/ptchart/newpatient/" method="POST">
+    <form action="/ptchart/newpatient/" method="POST" id="new-pt-form">
         {% csrf_token %}
         <div class="form-group">
             {{ form.intake_date }}
@@ -26,4 +26,10 @@
                     Return to All Patient Charts
     </a>
 </div>
+
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="/static/js/checkNewPt.js"></script>
+
+
+
 {% endblock %}

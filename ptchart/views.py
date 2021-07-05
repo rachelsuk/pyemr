@@ -8,11 +8,11 @@ from django.urls import reverse
 
 def ptchart_index(request):
     patients = Patient.objects.all().order_by('name')
-    searched_pt = request.GET.get('name')
-    print(searched_pt)
-    if searched_pt:
-        patients = Patient.objects.filter(
-            name=searched_pt).order_by('name')
+    # searched_pt = request.GET.get('name')
+    # print(searched_pt)
+    # if searched_pt:
+    #     patients = Patient.objects.filter(
+    #         name=searched_pt).order_by('name')
     context = {
         'patients': patients,
     }
@@ -66,15 +66,27 @@ def ptchart_newpatient(request):
                 dob=form.cleaned_data["dob"],
                 race=form.cleaned_data["race"],
             )
-            if Patient.objects.filter(name=patient.name, dob=patient.dob).exists():
-                existing_patient = Patient.objects.get(
-                    name=patient.name, dob=patient.dob)
-                return HttpResponseRedirect(reverse('ptchart_patientexists', args=(existing_patient.id,)))
-            else:
-                patient.save()
-                return HttpResponseRedirect(reverse('ptchart_detail', args=(patient.id,)))
+            # if Patient.objects.filter(name=patient.name, dob=patient.dob).exists():
+            #     existing_patient = Patient.objects.get(
+            #         name=patient.name, dob=patient.dob)
+            #     return HttpResponseRedirect(reverse('ptchart_patientexists', args=(existing_patient.id,)))
+            # else:
+            patient.save()
+            return HttpResponseRedirect(reverse('ptchart_detail', args=(patient.id,)))
     context = {"form": form}
     return render(request, "ptchart_newpatient.html", context)
+
+
+def check_new_pt(request):
+    form = NewPatientForm(request.POST)
+    if form.is_valid():
+        name = form.cleaned_data["name"]
+        dob = form.cleaned_data["dob"]
+        if Patient.objects.filter(name=name, dob=dob).exists():
+            existing_patient = Patient.objects.get(
+                name=name, dob=dob)
+            print("this works")
+            return existing_patient.id
 
 
 def ptchart_newencounter(request, patient_id):

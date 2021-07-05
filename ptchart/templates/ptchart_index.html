@@ -11,21 +11,21 @@
 </div>
 <br>
 
-<form action="/ptchart/">
-    <div class="form-group">
+<!-- <form id="search-pt">
+    <div class="form-group"> -->
         <input type="text" name="name" class="form-control" placeholder="Patient Name (e.g. 'Donald Duck')" \
-        required="" id="id_name">
-    </div>
+        required="" id="search-pt">
+    <!-- </div>
     <button type="submit" class="btn btn-primary">Search Patient</button>   
-</form>
+</form> -->
 
-<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+<!-- <div class="d-grid gap-2 d-md-flex justify-content-md-end">
     <form action="/ptchart/">
         <button type="submit" class="btn btn-outline-primary">View All Patients</button>
     </form>
-</div>
+</div> -->
 
-<table class="table">
+<table class="table" id="pt-table">
     <thead>
         <tr>
             <th scope="col">Patient Name</th>
@@ -43,6 +43,9 @@
         </tr>
         {% endfor %}
     </tbody>
-</table>  
+</table> 
+
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="/static/js/ptList.js"></script>
     
 {% endblock %}

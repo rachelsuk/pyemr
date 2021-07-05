@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ptchart',
     'research',
-    # 'pyemr'
+    'pyemr'
 ]
 
 MIDDLEWARE = [
